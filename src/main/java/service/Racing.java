@@ -9,7 +9,7 @@ import java.util.List;
 public class Racing {
 
 	public void setScore(Cars cars) {
-		cars.getCars().forEach(car -> judgeScore(car, new MovableStrategyImpl(), new RandomNumberGeneratorImpl()));
+		cars.getCars().forEach(car -> judgeScore(car, new MovableStrategyImpl()));
 	}
 
 	public void printScore(Cars cars) {
@@ -24,8 +24,8 @@ public class Racing {
 		System.out.println(winners + "가 최종 우승했습니다");
 	}
 
-	void judgeScore(Car car, MovableStrategy movableStrategy, RandomNumberGenerator randomNumberGenerator) {
-		if (movableStrategy.move(randomNumberGenerator)) {
+	void judgeScore(Car car, MovableStrategy movableStrategy) {
+		if (movableStrategy.move()) {
 			car.addScore();
 		}
 	}

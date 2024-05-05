@@ -1,23 +1,26 @@
 package service;
 
 import org.junit.jupiter.api.Test;
-import service.MovableStrategyImpl;
-import service.RandomNumberGenerator;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MovableStrategyImplTest {
 
-	MovableStrategyImpl sut = new MovableStrategyImpl();
+	private MovableStrategy sut;
+
+	private void setGiven(int randomNum) {
+		RandomNumberGenerator randomNumberGenerator = () -> randomNum;
+		this.sut = new MovableStrategyImpl(randomNumberGenerator);
+	}
 
 	@Test
 	void move_less_than_4() {
 		// given
-		RandomNumberGenerator randomNumberGenerator = () -> 4;
+		setGiven(4);
 
 		// when
-		boolean move = sut.move(randomNumberGenerator);
+		boolean move = sut.move();
 
 		// then
 		assertFalse(move);
@@ -26,10 +29,10 @@ class MovableStrategyImplTest {
 	@Test
 	void move_over_5() {
 		// given
-		RandomNumberGenerator randomNumberGenerator = () -> 5;
+		setGiven(5);
 
 		// when
-		boolean move = sut.move(randomNumberGenerator);
+		boolean move = sut.move();
 
 		// then
 		assertTrue(move);

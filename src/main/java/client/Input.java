@@ -18,12 +18,7 @@ public class Input {
         System.out.println("시도할 회수는 몇회인가요?");
         int tryCnt = scanner.nextInt();
 
-        controller(carInput, tryCnt);
-
-    }
-
-    public static void controller(String carInput, int tryCnt) {
-        Cars cars = new Cars(carInput);
-        new Output().play(cars, tryCnt);
+        Controller controller = new Controller();
+        controller.racingController(carInput, tryCnt);
     }
 }

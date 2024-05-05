@@ -19,10 +19,10 @@ class RacingTest {
 		Car car = new Car("aaa");
 
 		RandomNumberGenerator randomNumberGenerator = () -> 4;
-		MovableStrategy movableStrategy = random -> false;
+		MovableStrategy movableStrategy = new MovableStrategyImpl(randomNumberGenerator);
 
 		// when
-		sut.judgeScore(car, movableStrategy, randomNumberGenerator);
+		sut.judgeScore(car, movableStrategy);
 
 		// then
 		assertEquals(0, car.getScore());
@@ -33,10 +33,10 @@ class RacingTest {
 		// given
 		Car car = new Car("aaa");
 		RandomNumberGenerator randomNumberGenerator = () -> 5;
-		MovableStrategy movableStrategy = random -> true;
+		MovableStrategy movableStrategy = new MovableStrategyImpl(randomNumberGenerator);
 
 		// when
-		sut.judgeScore(car, movableStrategy, randomNumberGenerator);
+		sut.judgeScore(car, movableStrategy);
 
 		// then
 		assertEquals(1, car.getScore());
@@ -48,6 +48,16 @@ class RacingTest {
 
 	@Test
 	void getWinnerScoreWithPattern() {
+		// given
+		Car car = new Car("gabin");
+		car.addScore();
+		car.addScore();
+
+		// when
+		String winnerScoreWithPattern = sut.getWinnerScoreWithPattern(car);
+
+		// then
+		assertEquals("gabin : --", winnerScoreWithPattern);
 	}
 
 	@Test
