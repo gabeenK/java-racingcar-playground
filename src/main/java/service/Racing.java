@@ -8,8 +8,10 @@ import java.util.List;
 
 public class Racing {
 
+	private final MovableStrategyImpl movableStrategy = new MovableStrategyImpl();
+
 	public void setScore(Cars cars) {
-		cars.getCars().forEach(car -> judgeScore(car, new MovableStrategyImpl()));
+		cars.getCars().forEach(car -> judgeScore(car, movableStrategy));
 	}
 
 	public void printScore(Cars cars) {

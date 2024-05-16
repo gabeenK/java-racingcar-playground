@@ -9,8 +9,6 @@ public class Controller {
 
     public void racingController(String carInput, int tryCnt) {
         Cars cars = new Cars(carInput);
-
         output.play(cars, tryCnt);
-        output.result(cars);
     }
 }

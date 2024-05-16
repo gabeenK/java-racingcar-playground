@@ -8,15 +8,15 @@ public class Output {
 	Racing racing = new Racing();
 
 	public void play(Cars cars, int tryCnt) {
-		while (tryCnt > 0) {
+		System.out.println("실행 결과");
+		for (int i = 0; i < tryCnt; i++) {
 			racing.setScore(cars);
 			racing.printScore(cars);
-			tryCnt--;
 		}
+		result(cars);
 	}
 
-	public void result(Cars cars) {
-		System.out.println("실행 결과");
+	void result(Cars cars) {
 		racing.printWinner(cars);
 	}
 }
